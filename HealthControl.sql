@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `healthcontrol`.`categorias` ;
 
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`categorias` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -49,7 +49,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `healthcontrol`.`medicamentos` ;
 
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`medicamentos` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `indicacoes` VARCHAR(350) NULL,
   `contra_indicacoes` VARCHAR(350) NULL,
@@ -73,7 +73,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `healthcontrol`.`pressures` ;
 
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`pressures` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `usuario_id` INT NOT NULL,
   `data` DATE NOT NULL,
   `valor1` INT NOT NULL,
@@ -94,12 +94,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `healthcontrol`.`receitas` ;
 
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`receitas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `usuarios_id` INT NOT NULL,
   `medicamentos_id` INT NOT NULL,
   `intervalo` INT NULL,
   `dias` INT NULL,
   `diasRestantes` INT NULL,
-  PRIMARY KEY (`usuarios_id`, `medicamentos_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_usuarios_has_medicamentos_medicamentos1_idx` (`medicamentos_id` ASC),
   INDEX `fk_usuarios_has_medicamentos_usuarios1_idx` (`usuarios_id` ASC),
   CONSTRAINT `fk_usuarios_has_medicamentos_usuarios1`
@@ -121,7 +122,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `healthcontrol`.`pesos` ;
 
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`pesos` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `usuario_id` INT NOT NULL,
   `data` DATE NOT NULL,
   PRIMARY KEY (`id`),
@@ -140,7 +141,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `healthcontrol`.`glicoses` ;
 
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`glicoses` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `usuario_id` INT NOT NULL,
   `valor` INT NOT NULL,
   `data` DATE NOT NULL,
@@ -178,3 +179,4 @@ INSERT INTO `categorias` (`id`, `nome`) VALUES(9, 'Problemas do coração');
 INSERT INTO `categorias` (`id`, `nome`) VALUES(10, 'Anti-inflamatórios');
 INSERT INTO `categorias` (`id`, `nome`) VALUES(11, 'Hipertensão');
 INSERT INTO `categorias` (`id`, `nome`) VALUES(12, 'Infecções');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(13, 'Outras');
