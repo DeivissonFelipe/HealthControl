@@ -51,8 +51,8 @@ DROP TABLE IF EXISTS `healthcontrol`.`medicamentos` ;
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`medicamentos` (
   `id` INT NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
-  `indicacoes` VARCHAR(45) NULL,
-  `contra_indicacoes` VARCHAR(45) NULL,
+  `indicacoes` VARCHAR(350) NULL,
+  `contra_indicacoes` VARCHAR(350) NULL,
   `qtd` INT UNSIGNED NULL DEFAULT 0,
   `via` VARCHAR(45) NULL,
   `descricao` VARCHAR(45) NULL,
@@ -164,3 +164,17 @@ GRANT ALL ON `healthcontrol`.* TO 'controlUser'@'localhost';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO `categorias` (`id`, `nome`) VALUES(1, 'Analgésicos');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(2, 'Antigripais');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(3, 'Vitaminas');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(4, 'Anticoncepcionais');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(5, 'Antialérgicos');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(6, 'Colesterol');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(7, 'Sistema nervoso');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(8, 'Diabetes');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(9, 'Problemas do coração');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(10, 'Anti-inflamatórios');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(11, 'Hipertensão');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(12, 'Infecções');
