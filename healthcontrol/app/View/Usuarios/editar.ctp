@@ -1,13 +1,16 @@
 <div class="container well col-sm-6 col-sm-offset-3">		
 
-	<div class="col-sm-12">
-		
-		<h3 align="center">Cadastro de Usuários</h3>
-		<br><br>
+	<h3 align="center">Editar Perfil</h3>
+	<br>
 
+	<div class="col-sm-8 col-sm-offset-2">
 
-		<?php echo $this->Form->create('Usuario', array('controller' => 'usuarios', 'url' => 'cadastro')); ?>
+		<?php echo $this->Form->create('Usuario', array('controller' => 'usuarios', 'url' => 'editar')); ?>
 			
+			<div class="form-group">
+	            <?php echo $this->Form->input('id', array('type' => 'hidden'));?>
+	        </div>
+
 			<div class="form-group">
 	            <?php echo $this->Form->input('nome', array('class' => 'form-control', 'label' => 'Nome', 'id' => 'nome'));?>
 	        </div>
@@ -26,11 +29,9 @@
 
 			<br>
 			<div class="col-sm-12 center-block">
-                <?php echo $this->Form->submit('Cadastrar', array('class' => 'btn btn-lg btn-secondary btn-block')); ?>
-            </div>
+	            <?php echo $this->Form->submit('Salvar', array('class' => 'btn btn-lg btn-secondary btn-block login')); ?>
+	        </div>
 
-		<?php echo $this->Form->end(); ?>
-
-
+		<?php echo $this->Form->end(); ?>		
 	</div>
 </div>

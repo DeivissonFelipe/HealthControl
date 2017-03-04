@@ -9,17 +9,21 @@
 		echo $this->Html->meta('icon'); //icone da aba
 		echo $this->Html->css('bootstrap');
 		//echo $this->Html->css('cake.generic');
+		echo $this->Html->script('ajax');
+		echo $this->Html->script('bootstrap');
 
 		// ------------------------------------------->
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 	<style>
        .error{
              color:red
-       }
+       };
 	</style>
+	
 </head>
 <body>
 	<div id="container">
@@ -30,7 +34,6 @@
 			      <?= $this->Html->link("HealthControl", array('controller' => 'pages', 'action' => 'index'), array('class'=>'navbar-brand')); ?>
 			    </div>
 			    <ul class="nav navbar-nav">
-			    	<li><?= $this->Html->link("Usuários", array('controller' => 'usuarios', 'action' => 'index')); ?></li>
 			    	<li><?= $this->Html->link("Medicamentos", array('controller' => 'medicamentos', 'action' => 'index')); ?></li>
 			    	<li><?= $this->Html->link("Receitas/Prescrições", array('controller' => 'receitas', 'action' => 'index')); ?></li>
 			    	<li><?= $this->Html->link("Horários", array('controller' => 'receitas', 'action' => 'calcular_tempo')); ?></li>
@@ -50,10 +53,13 @@
 				<?php  }else{ ?>
 
 				<ul class="nav navbar-nav navbar-right">
-			      	<li><?php 
-						$usuario = $this->Session->read('User');
-						echo $this->Html->link("Bem vindo(a) " . $usuario['0']['Usuario']['nome'],	array('controller' => 'usuarios', 'action' => 'logout', 'title'=> 'Logout')); ?>
-			     	</li>
+					<?php $usuario = $this->Session->read('User'); ?>
+					<li class="dropdown"><?php echo $this->Html->link("Bem vindo(a) " . $usuario['0']['Usuario']['nome'], array(), array('class' =>'dropdown-toggle', 'data-toggle' => 'dropdown')); ?>
+				        <ul class="dropdown-menu">
+				          <li><?php echo $this->Html->link("Editar Perfil",	array('controller' => 'usuarios', 'action' => 'editar')); ?></li>
+				          <li><?php echo $this->Html->link("Logout",	array('controller' => 'usuarios', 'action' => 'logout')); ?></li>
+				        </ul>
+				    </li>
 			    </ul>
 				
 				<?php  }?>
@@ -62,15 +68,15 @@
 			</nav>
 		</div>
 		<div id="content">
-
+			
 			<?php echo $this->fetch('content'); ?>
 
 		</div>
 		<div id="footer">
 		
-			 <div class="container well col-sm-6 col-sm-offset-3" align="center"> 
-				 <?php echo $this->element('sql_dump'); ?> 
-			 </div> 
+			 <!-- <div class="container well col-sm-6 col-sm-offset-3" align="center">  -->
+				 <!-- <?php echo $this->element('sql_dump'); ?>  -->
+			 <!-- </div>  -->
 			
 			
 			<div class="container well col-sm-6 col-sm-offset-3" style="background-color: #FA8072;" align="center">

@@ -4,8 +4,6 @@ class UsuariosController extends AppController {
 	public $helpers = array('Html', 'Form');
 	public $components = array('Flash');
 
-	public function index(){}
-
 	public function cadastro(){
 	
 		if($this->Usuario->save($this->request->data)){
@@ -15,9 +13,7 @@ class UsuariosController extends AppController {
 		
 	}
 
-	public function index_login(){
-		//Não preciso mexer aqui
-	}
+	public function index_login(){}
 	
 
 	public function validar(){
@@ -64,7 +60,20 @@ class UsuariosController extends AppController {
 //-------------------------------------------------------------------------------------------------------------------------------->>
 
 
-	public function editar(){}
+	public function editar(){
+		if(empty($this->request->data)){
+			//carregar campos para edição
+			$this->request->data= $this->Usuario->findById($this->Session->read('User')[0]['Usuario']['id']);
+		}
+		else{
+			//Salvar os dados
+			if($this->Usuario->save($this->request->data)){
+				$this->Flash->set('Perfil atualizado com sucesso!');
+				$this->redirect(array("controller" => "pages", "action" => "home"));
+			}
+		}
+
+	}
 
 
 }
