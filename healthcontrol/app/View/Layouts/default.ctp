@@ -36,7 +36,6 @@
 			    <ul class="nav navbar-nav">
 			    	<li><?= $this->Html->link("Medicamentos", array('controller' => 'medicamentos', 'action' => 'index')); ?></li>
 			    	<li><?= $this->Html->link("Receitas/Prescrições", array('controller' => 'receitas', 'action' => 'index')); ?></li>
-			    	<li><?= $this->Html->link("Horários", array('controller' => 'receitas', 'action' => 'calcular_tempo')); ?></li>
 			    	<li><?= $this->Html->link("Extras", array('controller' => 'extras', 'action' => 'index')); ?></li>
 			
 			    </ul>

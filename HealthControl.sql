@@ -167,16 +167,47 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-INSERT INTO `categorias` (`id`, `nome`) VALUES(1, 'Analgésicos');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(2, 'Antigripais');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(3, 'Vitaminas');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(4, 'Anticoncepcionais');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(5, 'Antialérgicos');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(6, 'Colesterol');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(7, 'Sistema nervoso');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(8, 'Diabetes');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(9, 'Problemas do coração');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(10, 'Anti-inflamatórios');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(11, 'Hipertensão');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(12, 'Infecções');
-INSERT INTO `categorias` (`id`, `nome`) VALUES(13, 'Outras');
+-- -----------------------------------------------------
+-- Table `healthcontrol`.`receitas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `healthcontrol`.`receitas` ;
+
+CREATE TABLE IF NOT EXISTS `healthcontrol`.`receitas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `medico` VARCHAR(45) NOT NULL,
+  `medicamento_id` INT NULL,
+  `turno` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_receitas_medicamentos`
+    FOREIGN KEY (`medicamento_id`)
+    REFERENCES `healthcontrol`.`medicamentos`(`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `healthcontrol`.`reacoes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `healthcontrol`.`reacoes` ;
+
+CREATE TABLE IF NOT EXISTS `healthcontrol`.`reacoes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(200) NOT NULL,
+  `medicamento_id` INT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_reacoes_medicamentos`
+    FOREIGN KEY (`medicamento_id`)
+    REFERENCES `healthcontrol`.`medicamentos`(`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+INSERT INTO `categorias` (`id`, `nome`) VALUES(1, 'Vitaminas');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(2, 'Anticoncepcionais');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(3, 'Colesterol');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(4, 'Sistema nervoso');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(5, 'Diabetes');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(6, 'Problemas do coração');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(7, 'Hipertensão');
+INSERT INTO `categorias` (`id`, `nome`) VALUES(8, 'Outras');

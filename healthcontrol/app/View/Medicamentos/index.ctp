@@ -22,8 +22,7 @@
 				<th class="text-center">Quantidade</th>
 				<th class="text-center">Via</th>
 				<th class="text-center">Categoria</th>
-				<th class="text-center">Editar</th>
-				<th class="text-center">Excluir</th>
+				
 			</tr>
 			
 			<?php foreach ($medicamentos as $m): ?>
