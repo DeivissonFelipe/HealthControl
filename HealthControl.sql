@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `healthcontrol`.`pressures` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `healthcontrol`.`receitas`
 -- -----------------------------------------------------
@@ -95,26 +94,22 @@ DROP TABLE IF EXISTS `healthcontrol`.`receitas` ;
 
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`receitas` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `usuarios_id` INT NOT NULL,
-  `medicamentos_id` INT NOT NULL,
-  `intervalo` INT NULL,
-  `dias` INT NULL,
-  `diasRestantes` INT NULL,
+  `medico` VARCHAR(45) NOT NULL,
+  `usuario_id` INT NOT NULL,
+  `medicamento_id` INT NULL,
+  `turno` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_usuarios_has_medicamentos_medicamentos1_idx` (`medicamentos_id` ASC),
-  INDEX `fk_usuarios_has_medicamentos_usuarios1_idx` (`usuarios_id` ASC),
-  CONSTRAINT `fk_usuarios_has_medicamentos_usuarios1`
-    FOREIGN KEY (`usuarios_id`)
+  CONSTRAINT `fk_receitas_usuarios`
+    FOREIGN KEY (`usuario_id`)
     REFERENCES `healthcontrol`.`usuarios` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuarios_has_medicamentos_medicamentos1`
-    FOREIGN KEY (`medicamentos_id`)
-    REFERENCES `healthcontrol`.`medicamentos` (`id`)
+  CONSTRAINT `fk_receitas_medicamentos`
+    FOREIGN KEY (`medicamento_id`)
+    REFERENCES `healthcontrol`.`medicamentos`(`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `healthcontrol`.`pesos`
@@ -166,43 +161,35 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-
 -- -----------------------------------------------------
--- Table `healthcontrol`.`receitas`
+-- Table `healthcontrol`.`cDiarios`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `healthcontrol`.`receitas` ;
+DROP TABLE IF EXISTS `healthcontrol`.`cDiarios`;
 
-CREATE TABLE IF NOT EXISTS `healthcontrol`.`receitas` (
+CREATE TABLE IF NOT EXISTS `healthcontrol`.`cDiarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `medico` VARCHAR(45) NOT NULL,
+  `sintomas` VARCHAR(200) NOT NULL,
+  `usuario_id` INT NULL,
   `medicamento_id` INT NULL,
-  `turno` VARCHAR(10) NOT NULL,
+  `turno` INT NOT NULL,
+  `data` date NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_receitas_medicamentos`
+  CONSTRAINT `fk_cDiarios_medicamentos`
     FOREIGN KEY (`medicamento_id`)
     REFERENCES `healthcontrol`.`medicamentos`(`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `healthcontrol`.`reacoes`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `healthcontrol`.`reacoes` ;
-
-CREATE TABLE IF NOT EXISTS `healthcontrol`.`reacoes` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `descricao` VARCHAR(200) NOT NULL,
-  `medicamento_id` INT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_reacoes_medicamentos`
-    FOREIGN KEY (`medicamento_id`)
-    REFERENCES `healthcontrol`.`medicamentos`(`id`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cDiarios_usuarios`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `healthcontrol`.`usuarios`(`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
+
+
+-- -----------------------------------------------------
 INSERT INTO `categorias` (`id`, `nome`) VALUES(1, 'Vitaminas');
 INSERT INTO `categorias` (`id`, `nome`) VALUES(2, 'Anticoncepcionais');
 INSERT INTO `categorias` (`id`, `nome`) VALUES(3, 'Colesterol');

@@ -28,6 +28,9 @@
 	            <?php echo $this->Form->input('medico', array('class' => 'form-control', 'label' => 'Médico'));?>
 	        </div>
 			<div class="form-group">
+	            <?php echo $this->Form->input('usuario_id', array('class' => 'form-control', 'type' => 'hidden', 'value' => $this->Session->read('User')[0]['Usuario']['id']));?>
+	        </div>
+			<div class="form-group">
 	            <?php echo $this->Form->input('medicamento_id', array('class' => 'form-control', 'label' => 'Medicamento'));?>
 	        </div>
 	        <div class="form-group">

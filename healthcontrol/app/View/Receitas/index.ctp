@@ -42,7 +42,15 @@
 					<?php echo $r['Medicamento']['nome']; ?>
 				</td>
 				<td class="text-center">
-					<?php echo $r['Receita']['turno']; ?>
+					<?php  
+						if($r['Receita']['turno'] == 1){
+							echo 'Manhã';
+						}elseif ($r['Receita']['turno'] == 2) {
+							echo 'Tarde';
+						}elseif ($r['Receita']['turno'] == 3) {
+							echo 'Noite';
+						}
+					?>
 				</td>
 				<td class="text-center">
 					<?= $this->Html->link("Editar",	array('controller' => 'receitas', 'action' => 'editar', $r['Receita']['id'])); ?>

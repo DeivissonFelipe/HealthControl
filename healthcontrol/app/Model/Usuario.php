@@ -2,6 +2,7 @@
 
 class Usuario extends AppModel {
 	
+public $hasMany = array('Cdiario', 'Receita');
 
 public $validate = array(
 		'login' => array(

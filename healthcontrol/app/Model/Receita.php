@@ -1,5 +1,5 @@
 <?php 
 
 class Receita extends AppModel {
-	public $belongsTo = array('Medicamento');	
+	public $belongsTo = array('Medicamento', 'Usuario');	
 }
