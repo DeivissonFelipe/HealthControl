@@ -81,7 +81,7 @@
 	        <?php echo 
 	          	$this->Html->link(
 	          	$this->Html->image('meditacao.png', array('width' => '400')),
-	          	array('controller' => 'extras', 'action' => 'dicas'),
+	          	array('controller' => 'pages', 'action' => 'dicas'),
 	          	array('escape' => false)
 	          	);
 	        ?>

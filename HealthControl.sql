@@ -51,6 +51,7 @@ DROP TABLE IF EXISTS `healthcontrol`.`medicamentos` ;
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`medicamentos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
+  `usuario_id` INT NOT NULL,
   `indicacoes` VARCHAR(350) NULL,
   `contra_indicacoes` VARCHAR(350) NULL,
   `qtd` INT UNSIGNED NULL DEFAULT 0,
@@ -63,8 +64,13 @@ CREATE TABLE IF NOT EXISTS `healthcontrol`.`medicamentos` (
     FOREIGN KEY (`categoria_id`)
     REFERENCES `healthcontrol`.`categorias` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_medicamentos_usuarios`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `healthcontrol`.`usuarios` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------

@@ -13,6 +13,10 @@
 		<div class="form-group">
             <?php echo $this->Form->input('nome', array('class' => 'form-control', 'label' => 'Nome'));?>
         </div>			
+        
+        <div class="form-group">
+            <?php echo $this->Form->input('usuario_id', array('class' => 'form-control', 'type' => 'hidden', 'value' => $this->Session->read('User')[0]['Usuario']['id']));?>
+        </div>
 
 		<div class="form-group">
             <?php echo $this->Form->input('descricao', array('class' => 'form-control', 'label' => 'Descrição'));?>

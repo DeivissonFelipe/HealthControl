@@ -8,11 +8,13 @@
 	<?php
 		echo $this->Html->meta('icon'); //icone da aba
 		echo $this->Html->css('bootstrap');
-		//echo $this->Html->css('cake.generic');
+		echo $this->Html->css('font-awesome.min');
+		// echo $this->Html->css('fontawesome-webfont'); 
+
 		echo $this->Html->script('ajax');
 		echo $this->Html->script('bootstrap');
 
-		// ------------------------------------------->
+		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -77,15 +79,13 @@
 				 <!-- <?php echo $this->element('sql_dump'); ?>  -->
 			 <!-- </div>  -->
 			
-			
-			<div class="container well col-sm-6 col-sm-offset-3" style="background-color: #FA8072;" align="center">
-				<h4><?php echo $this->Flash->render(); ?></h4>
-			</div>
-			
+			<?php if(!empty($this->Session->read('Message'))){ ?>
+				<div class="container well col-sm-6 col-sm-offset-3" style="background-color: #FA8072;" align="center">
+					<h4><?php echo $this->Flash->render(); ?></h4>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 	
-	
-
 </body>
 </html>

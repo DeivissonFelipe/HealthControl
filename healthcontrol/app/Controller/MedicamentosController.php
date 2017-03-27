@@ -7,12 +7,12 @@ class MedicamentosController extends AppController {
 	//-------------------------------------------------------------------------------------------------------------------------------->>
 
 	public function index(){
-		$medicamentos = $this->Medicamento->find('all');
+		$medicamentos = $this->Medicamento->find('all', array('conditions' => array('Medicamento.usuario_id' => $this->Session->read('User')[0]['Usuario']['id'])));
 		$this->set('medicamentos', $medicamentos);
 	}
 
 
-	//ideia -> cadastrar imagem do medicamento 
+	 
 	public function cadastrar(){
 		$this->loadModel('Categoria');
 		if(empty($this->request->data)){
