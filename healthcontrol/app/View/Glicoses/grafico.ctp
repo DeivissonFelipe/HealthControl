@@ -24,7 +24,7 @@
       <br><br><br><br><br>
   </div>
   
-  <div id="grafico" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  <div class="container" id="grafico" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   
   <?php 
       if(!empty($this->request->data)){

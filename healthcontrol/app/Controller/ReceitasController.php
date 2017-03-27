@@ -91,6 +91,7 @@ class ReceitasController extends AppController {
 					array('usuario_id' => $usuario_id,
 						  'medicamento_id' => $medicamento_id,
 						  'turno' => $turno,
+						  'sintomas' => '',
 						  'data' => $data,
 			));	
 			
