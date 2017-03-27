@@ -46,5 +46,55 @@ class PressuresController extends AppController {
     	$this->redirect(array('action' => 'index'));
 	} 
 
-	public function grafico(){}
+	public function grafico(){
+		if(empty($this->request->data)){
+			//Preencher os dados de seleção
+			//--------------------------------------------------------------------------------------->>
+			$this->preencheDados();
+			//--------------------------------------------------------------------------------------->>
+		}
+		else{
+			//Preencher os dados de seleção
+			//--------------------------------------------------------------------------------------->>
+			$this->preencheDados();
+			//--------------------------------------------------------------------------------------->>
+
+			//Seleção de Registros que estão relacionados com os dados selecionados
+			//--------------------------------------------------------------------------------------->>
+			$mes['MONTH(data)'] = $this->request->data['Pressure']['mes'];
+			$ano['YEAR(data)'] =  $this->request->data['Pressure']['ano'];
+
+
+			$pressures = $this->Pressure->find('all', array('conditions' => array(
+											$mes,
+											$ano,
+											'Pressure.usuario_id' => $this->Session->read('User')[0]['Usuario']['id']),
+											'order'=> "data ASC"
+			));
+
+			$this->set('pressures', $pressures);
+			//--------------------------------------------------------------------------------------->>
+		}
+	}
+
+
+	public function preencheDados(){
+		$meses = array(
+			'1' => 'Janeiro',
+			'2' => 'Fevereiro',
+			'3' => 'Março',	
+			'4' => 'Abril',
+			'5' => 'Maio',
+			'6' => 'Junho',
+			'7' => 'Julho',
+			'8' => 'Agosto',
+			'9' => 'Setembro',
+			'10' => 'Outubro',
+			'11' =>	'Novembro',
+			'12' => 'Dezembro'
+		);
+
+		$this->set('meses', $meses);	
+	}
+
 }

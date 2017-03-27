@@ -21,8 +21,8 @@
 			
 			<tr>
 				<th class="text-center">Data</th>
-				<th class="text-center">Valor 1 - <span style="font-style:italic">(pressão máxima)</span></th>
-				<th class="text-center">Valor 2 - <span style="font-style:italic">(pressão mínima)</span></th>
+				<th class="text-center">Valor 1 - <span style="font-style:italic">(pressão sistólica)</span></th>
+				<th class="text-center">Valor 2 - <span style="font-style:italic">(pressão diastólica)</span></th>
 			</tr>
 
 			<?php foreach ($pressures as $p): ?>

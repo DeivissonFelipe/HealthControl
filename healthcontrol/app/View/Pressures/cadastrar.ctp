@@ -15,11 +15,11 @@
         </div>
 
         <div class="form-group">
-            <?php echo $this->Form->input('valor1', array('class' => 'form-control', 'label' => 'Pressão Máxima'));?>
+            <?php echo $this->Form->input('valor1', array('class' => 'form-control', 'label' => 'Pressão Sistólica'));?>
         </div>
 
 		<div class="form-group">
-            <?php echo $this->Form->input('valor2', array('class' => 'form-control', 'label' => 'Pressão Mínima'));?>
+            <?php echo $this->Form->input('valor2', array('class' => 'form-control', 'label' => 'Pressão Diastólica'));?>
         </div>
 
 		<br>
