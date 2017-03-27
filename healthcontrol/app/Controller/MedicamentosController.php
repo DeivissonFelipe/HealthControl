@@ -70,5 +70,4 @@ class MedicamentosController extends AppController {
 		$this->set('medicamento', $medicamento);
 	}
 
-	public function addReacao($id = null){}
 }

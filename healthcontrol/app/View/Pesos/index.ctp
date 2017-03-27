@@ -31,7 +31,7 @@
 					<?php echo $p['Peso']['data']; ?>
 				</td>
 				<td class="text-center">
-					<?php echo $p['Peso']['peso']; ?>
+					<?php echo $p['Peso']['valor']; ?> kg
 				</td>
 				
 				<td class="text-center">

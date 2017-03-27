@@ -2,7 +2,7 @@
 
 	<div class="col-sm-12">
 		
-		<h3 align="center">Edição de Medicamentosfds</h3>
+		<h3 align="center">Edição de Medicamentos</h3>
 		<br>
 
 		<div class="col-sm-8 col-sm-offset-2">

@@ -1,0 +1,1 @@
+<?php echo $this->Html->image('manutencao.jpg', array('height' => 300, 'class'=> array('img-responsive', 'center-block') ));?>	

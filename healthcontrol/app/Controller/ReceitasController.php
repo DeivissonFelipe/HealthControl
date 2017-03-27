@@ -112,6 +112,64 @@ class ReceitasController extends AppController {
 		}
 	}
 
-	public function relatorio(){}
+	public function relatorio(){
+		$this->loadModel('Cdiario');
+		$this->loadModel('Medicamento');
+		if(empty($this->request->data)){
+			//Preencher os dados de seleção
+			//--------------------------------------------------------------------------------------->>
+			$this->preencheDados();
+			//--------------------------------------------------------------------------------------->>
+		}
+		else{
+			//Preencher os dados de seleção
+			//--------------------------------------------------------------------------------------->>
+			$this->preencheDados();
+			//--------------------------------------------------------------------------------------->>
+
+			//Seleção de Registros que estão relacionados com os dados selecionados
+			//--------------------------------------------------------------------------------------->>
+			$mes['MONTH(data)'] = $this->request->data['Receita']['mes'];
+			$ano['YEAR(data)'] =  $this->request->data['Receita']['ano'];
+			$medicamento = $this->request->data['Receita']['medicamento_id'];
+			$registros = $this->Cdiario->find('all', array('conditions' => array(
+											$mes,
+											$ano,
+											$medicamento,
+											'Cdiario.usuario_id' => $this->Session->read('User')[0]['Usuario']['id'])));
+
+			
+			$this->set('registros', $registros);
+			//--------------------------------------------------------------------------------------->>
+		}
+	}
+
+
+	public function preencheDados(){
+
+		$medicamentos = $this->Medicamento->find('list', 
+			array(
+				'fields' => array('id', 'nome'),
+				'conditions' => array('Medicamento.usuario_id' => $this->Session->read('User')[0]['Usuario']['id'])
+			)
+		);
+
+		$meses = array(
+			'1' => 'Janeiro',
+			'2' => 'Fevereiro',
+			'3' => 'Março',	
+			'4' => 'Abril',
+			'5' => 'Maio',
+			'6' => 'Junho',
+			'7' => 'Julho',
+			'8' => 'Agosto',
+			'9' => 'Setembro',
+			'10' => 'Outubro',
+			'11' =>	'Novembro',
+			'12' => 'Dezembro'
+		);
+
+		$this->set(array('medicamentos' => $medicamentos, 'meses' => $meses));	
+	}
 
 }

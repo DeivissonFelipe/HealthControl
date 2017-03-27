@@ -3,10 +3,10 @@
 	  		
 		<ul class="nav nav-pills nav-stacked">
 			<li align= "center">
-				<?= $this->Html->link("Cadastrar taxa de glicose",	array('controller' => 'pesos', 'action' => 'cadastrar')); ?>
+				<?= $this->Html->link("Cadastrar taxa de glicose",	array('controller' => 'glicoses', 'action' => 'cadastrar')); ?>
 			</li>
 			<li align= "center">
-				<?= $this->Html->link("Histórico Gráfico",	array('controller' => '', 'action' => '')); ?>
+				<?= $this->Html->link("Histórico Gráfico",	array('controller' => 'glicoses', 'action' => 'grafico')); ?>
 			</li>
 		</ul>
 
@@ -31,7 +31,7 @@
 					<?php echo $g['Glicose']['data']; ?>
 				</td>
 				<td class="text-center">
-					<?php echo $g['Glicose']['valor']; ?>
+					<?php echo $g['Glicose']['valor']; ?> mg/dl
 
 				</td>
 				

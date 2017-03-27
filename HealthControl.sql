@@ -125,6 +125,7 @@ DROP TABLE IF EXISTS `healthcontrol`.`pesos` ;
 CREATE TABLE IF NOT EXISTS `healthcontrol`.`pesos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `usuario_id` INT NOT NULL,
+  `valor` INT NOT NULL,
   `data` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_pesos_usuarios_idx` (`usuario_id` ASC),
