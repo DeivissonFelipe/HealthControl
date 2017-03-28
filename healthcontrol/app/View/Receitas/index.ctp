@@ -55,9 +55,9 @@
 				<td class="text-center">
 					<?= $this->Html->link("Editar",	array('controller' => 'receitas', 'action' => 'editar', $r['Receita']['id'])); ?>
 				</td>
-				<td class="text-center">
+				<!-- <td class="text-center">
 					<?= $this->Html->link("Excluir", array('controller' => 'receitas', 'action' => 'excluir', $r['Receita']['id']), array('confirm' => 'Confirma exclusão?')); ?>
-				</td>
+				</td> -->
 			</tr>
 
 			<?php endforeach; ?>

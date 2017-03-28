@@ -15,8 +15,10 @@ class ReceitasController extends AppController {
 	public function cadastrar(){
 		$this->loadModel('Medicamento');
 		if(empty($this->request->data)){
-			$turnos = array(1 =>'manha', 2=>'tarde', 3 =>'noite');
-			$medicamentos = $this->Medicamento->find('list', array('fields' => array('id', 'nome')));
+			$turnos = array(1 =>'Manhã', 2=>'Tarde', 3 =>'Noite');
+			$medicamentos = $this->Medicamento->find('list', 
+				array('conditions' => array('Medicamento.usuario_id' => $this->Session->read('User')[0]['Usuario']['id']),'fields' => array('id', 'nome')));
+				
 			$this->set('turnos', $turnos);
 			$this->set('medicamentos', $medicamentos);
 		}
@@ -29,7 +31,25 @@ class ReceitasController extends AppController {
 
 	}
 
-	public function editar(){} //implementar
+	public function editar($id = null){
+		$this->loadModel('Medicamento');
+		if(empty($this->request->data)){
+			$turnos = array(1 =>'Manhã', 2=>'Tarde', 3 =>'Noite');
+			$medicamentos = $this->Medicamento->find('list', 
+				array('conditions' => array('Medicamento.usuario_id' => $this->Session->read('User')[0]['Usuario']['id']),'fields' => array('id', 'nome')));
+			$this->set('turnos', $turnos);
+			$this->set('medicamentos', $medicamentos);
+			$this->request->data = $this->Receita->findById($id);
+		}
+		else{
+			//Salvar os dados
+			if($this->Receita->save($this->request->data)){
+				$this->Flash->set('Receita atualizada com sucesso!');
+				$this->redirect(array("action" => "index"));
+			}
+		}
+
+	} 
 
 	public function excluir(){} //implementar
 
@@ -52,7 +72,9 @@ class ReceitasController extends AppController {
 		foreach ($receitas as $r) {
 			$estaRegistrado = false;
 			foreach ($registros as $reg) {
-				if($r['Receita']['medicamento_id'] == $reg['Cdiario']['medicamento_id']){
+				if($r['Receita']['medicamento_id'] == $reg['Cdiario']['medicamento_id']
+					&& $r['Receita']['turno'] == $reg['Cdiario']['turno']
+					){
 					$estaRegistrado = true;
 					array_push($registradas, $reg);
 				}

@@ -63,13 +63,13 @@ CREATE TABLE IF NOT EXISTS `healthcontrol`.`medicamentos` (
   CONSTRAINT `fk_medicamentos_categorias`
     FOREIGN KEY (`categoria_id`)
     REFERENCES `healthcontrol`.`categorias` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE  CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_medicamentos_usuarios`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `healthcontrol`.`usuarios` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )ENGINE = InnoDB;
 
 

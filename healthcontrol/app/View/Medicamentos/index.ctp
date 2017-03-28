@@ -46,9 +46,9 @@
 				<td class="text-center">
 					<?= $this->Html->link("Editar",	array('controller' => 'medicamentos', 'action' => 'editar', $m['Medicamento']['id'])); ?>
 				</td>
-				<td class="text-center">
+				<!-- <td class="text-center">
 					<?= $this->Html->link("Excluir", array('controller' => 'medicamentos', 'action' => 'excluir', $m['Medicamento']['id']), array('confirm' => 'Confirma exclusão?')); ?>
-				</td>
+				</td> -->
 			</tr>
 
 			<?php endforeach; ?>
